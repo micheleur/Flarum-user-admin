@@ -22,8 +22,8 @@ $your_password = ""; //put here a strong password
  * Little customization link Title and H1
  * 
  */
-$your_forum_title = "Node-RED Italia";
-$page_title = "Admin users";
+$your_forum_title = ""; //put here ypur forum title eg. Flarum forum
+$page_title = "Flarum user admin";
 ?>
 <!doctype html>
 <html lang="en">

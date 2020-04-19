@@ -12,6 +12,7 @@ I am starting this small project because we had to delete some users from our Fl
 Looking for support I find this https://discuss.flarum.org/d/6680-remove-delete-user so here is my solution.
 
 Without access via phpMyAdmin you can easily delete users. No need to install any extension.
+![screenshot](https://github.com/micheleur/Flarum-user-admin/blob/master/Flarum-users-admin-preview.gif)
 
 ## Installation
 
