@@ -1,21 +1,18 @@
 <?php
-  session_start();
-  //echo isset($_SESSION['login']);
+session_start();
+// echo isset($_SESSION['login']);
 
 /**
- * MySQL configuration for connection with your Flarum forum database
- * so you can read and delete users
+ * Read Flarum MySQL configuration for connection with Flarum database
+ * so you can read and delete
  */
-$servername = ""; //put here your MySQL host 
-$your_db_table = ""; //put here the name of your MySQL table
-$username = ""; //put here MySQL user
-$password = ""; //here MySQL password
+$cfg = require_once ("../config.php");
 
 /**
  * Basic login for admin page
  * yep set a strong password!
  */
-$your_username = "Admin"; //put here your username
+$your_username = "Admin"; //put here your username, maybe not "admin"
 $your_password = ""; //put here a strong password
 
 /**
@@ -48,19 +45,19 @@ $page_title = "Flarum user admin";
 if(isset($_SESSION['login'])) {
  echo "<p classs=\"text-center\">Benvenuto ". $your_username ."</p>";
  // Create connection
- $conn = new mysqli($servername, $username, $password, $dbname);
+ $conn = new mysqli($cfg['database']['host'], $cfg['database']['username'], $cfg['database']['password'], $cfg['database']['database']);
  // Check connection
  if ($conn->connect_error) {
   die("<div class=\"alert alert-warning\" role=\"alert\">Connection failed: " . $conn->connect_error."</div>");
  }
 
  if(isset($_GET['action']) AND $_GET['action'] == "delete"){
-  $sql_count = "SELECT id FROM ".$your_db_table;
+  $sql_count = "SELECT id FROM ".$cfg['database']['prefix']."users";
   $result_count = $conn->query($sql_count);
 
  if ($result_count->num_rows > 0) {
   // sql to delete a record
-  $sql_delete = "DELETE FROM ".$your_db_table." WHERE id=".$_GET['id'];
+  $sql_delete = "DELETE FROM ".$cfg['database']['prefix']."users WHERE id=".$_GET['id'];
 
   if ($conn->query($sql_delete) === TRUE) {
    echo "<div class=\"alert alert-success\" role=\"alert\">Record deleted successfully</div>";
@@ -90,7 +87,7 @@ if(isset($_SESSION['login'])) {
   <tbody>
 
 <?php
- $sql = "SELECT id, username, email, is_email_confirmed, joined_at, last_seen_at, discussion_count FROM ".$your_db_table;
+ $sql = "SELECT id, username, email, is_email_confirmed, joined_at, last_seen_at, discussion_count FROM ".$cfg['database']['prefix']."users";
  $result = $conn->query($sql);
 
  if ($result->num_rows > 0) {
@@ -184,3 +181,4 @@ else
 
   </body>
 </html>
+

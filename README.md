@@ -16,5 +16,10 @@ Without access via phpMyAdmin you can easily delete users. No need to install an
 
 ## Installation
 
-Download this file php and fill the basic configuration: _connection to your MySQL db_, _admin access password_, _customization_.
-Than upload it in root folder of your Flarum forum with FTP.
+Download this file php and fill the basic configuration: _admin access password_, _customization_.
+Than upload it into your public/ folder of your Flarum forum with FTP.
+
+
+## ToDo 
+
+* Switch SQL queries to Prepared statements
